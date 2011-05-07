@@ -1,8 +1,9 @@
 class LabamsController < ApplicationController
   # GET /labams
   # GET /labams.xml
+   before_filter :require_user
   def index
-    @labams = Labam.all
+    @labams = current_user.labams.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +14,7 @@ class LabamsController < ApplicationController
   # GET /labams/1
   # GET /labams/1.xml
   def show
-    @labam = Labam.find(params[:id])
+    @labam = current_user.labams.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +25,7 @@ class LabamsController < ApplicationController
   # GET /labams/new
   # GET /labams/new.xml
   def new
-    @labam = Labam.new
+    @labam = current_user.labams.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +35,13 @@ class LabamsController < ApplicationController
 
   # GET /labams/1/edit
   def edit
-    @labam = Labam.find(params[:id])
+    @labam = current_user.labams.find(params[:id])
   end
 
   # POST /labams
   # POST /labams.xml
   def create
-    @labam = Labam.new(params[:labam])
+    @labam = current_user.labams.new(params[:labam])
 
     respond_to do |format|
       if @labam.save
@@ -57,7 +58,7 @@ class LabamsController < ApplicationController
   # PUT /labams/1
   # PUT /labams/1.xml
   def update
-    @labam = Labam.find(params[:id])
+    @labam = current_user.labams.find(params[:id])
 
     respond_to do |format|
       if @labam.update_attributes(params[:labam])
@@ -74,7 +75,7 @@ class LabamsController < ApplicationController
   # DELETE /labams/1
   # DELETE /labams/1.xml
   def destroy
-    @labam = Labam.find(params[:id])
+    @labam = current_user.labams.find(params[:id])
     @labam.destroy
 
     respond_to do |format|
