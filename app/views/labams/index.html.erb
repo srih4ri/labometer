@@ -1,0 +1,24 @@
+<h1>Listing labams</h1>
+
+<table>
+  <tr>
+    <th>Desc</th>
+    <th>Amount</th>
+    <th>User</th>
+  </tr>
+
+<% @labams.each do |labam| %>
+  <tr>
+    <td><%=h labam.desc %></td>
+    <td><%=h labam.amount %></td>
+    <td><%=h labam.user %></td>
+    <td><%= link_to 'Show', labam %></td>
+    <td><%= link_to 'Edit', edit_labam_path(labam) %></td>
+    <td><%= link_to 'Destroy', labam, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New labam', new_labam_path %>
